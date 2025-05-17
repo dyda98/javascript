@@ -1,0 +1,204 @@
+<!DOCTYPE >
+<html>
+<head>
+    <title>Document</title>
+    <style>
+        fieldset{
+            background-color: lightgray;  
+        }
+        input{
+            background-color: white;
+        }
+        #pizza{
+            text-align: center;
+        }
+          </style>
+</head>
+<body>
+    <form action="" >
+        
+        <fieldset style="width:fit-content">
+            <legend id="pizza">PIZZA ORDER FORM</legend>
+            <Fieldset >
+                <Legend>Delivery Address</Legend>
+                <label for="" style="margin-right: 2%;">Full Name:</label> 
+                <input type="text" placeholder="Full Name" name="fullnane">
+
+                <label for="">Stree Address:</label>  
+                <input type="text" placeholder="Address" name="address"> <p></p>
+
+                <label for="" style="margin-right: 7%;">Phone:</label>
+                <input type="number" placeholder="Phone" name="phone">
+
+                <label for=""  style="margin-right: 9.5%;">Email:</label>
+                <input type="email" placeholder="Email" name="email"> <p></p>
+
+                <label for=""style="margin-right: 3%;">Password:</label>
+                <input type="password" placeholder="Password" name="password">
+
+
+            </Fieldset>
+
+            <fieldset>
+                <legend>Payment Information</legend>
+                <label for="" style="margin-right: 2%;">Card Type:</label>
+                <select style="margin-right: 14%;" name="cardtype">
+                    <option value="">Visa card</option>
+                    <option value="">Master card</option>
+                    <option value="">Discover</option>
+                </select>
+
+                <label for="" style="margin-right: 1%;">Card Number:</label>
+                <input type="text" placeholder="Card Number" name="cardnumber"><p></p>
+
+                <label for="">Name on Card:</label>
+                <input type="text" placeholder="Name" name="cardname"> 
+            </fieldset>
+
+            <fieldset>
+                <legend>Customize Your Pizza</legend>
+                <label for="" style="margin-right: 2.5%;">Pizza size:</label>
+                <select style="margin-right: 18%;" name="size">
+                    <option value="">large</option>
+                    <option value="">medium</option>
+                    <option value="">small</option>
+                </select>
+
+                <label for="" style="margin-right: 6.5%;">Quantity:</label>
+                <input type="number" name="quantity"> <p></p>
+
+                <label for="" style="margin-right: 6%;">Spices:</label>
+                Black pepper<input type="checkbox"> 
+                Bell peppers<input type="checkbox"> 
+                mayonnaise <input type="checkbox"> <br>
+
+                <label for="">Other Requirement:</label>
+                <textarea name="" id="">Any other Requirement</textarea>
+
+                <label for="">Meat:</label>
+                Fish <input type="radio">
+                Cow <input type="radio"> 
+                Chicken <input type="radio">
+
+                
+            </fieldset>
+            <p></p> &nbsp; &nbsp;
+            <button>Clear Order</button> &nbsp  
+            <button>Place Order</button>
+
+
+        </fieldset>
+    </form>
+
+
+    <script>
+
+    
+  document.querySelector("form").onsubmit = function(e) {
+  // Zuia form isitume kama kuna makosa
+  e.preventDefault();
+
+  // Chukua thamani za input
+  let fullname = document.getElementsByName("fullname")[0].value.trim();
+  let address = document.getElementsByName("address")[0].value.trim();
+  let phone = document.getElementsByName("phone")[0].value.trim();
+  let email = document.getElementsByName("email")[0].value.trim();
+  let password = document.getElementsByName("password")[0].value.trim();
+  let cardtype = document.getElementsByName("cardtype")[0].value;
+  let cardnumber = document.getElementsByName("cardnumber")[0].value.trim();
+  let cardname = document.getElementsByName("cardname")[0].value.trim();
+  let size = document.getElementsByName("size")[0].value;
+  let quantity = document.getElementsByName("quantity")[0].value.trim();
+
+  // 1. Full name
+  if (fullname === "") {
+    alert("Please enter your full name.");
+    return false;
+  }
+
+  // 2. Address
+  if (address === "") {
+    alert("Please enter your address.");
+    return false;
+  }
+
+  // 3. Phone (10 digits)
+  if (!/^\d{10}$/.test(phone)) {
+    alert("Phone number must be 10 digits.");
+    return false;
+  }
+
+  // 4. Email
+  if (email === "") {
+    alert("Please enter your email.");
+    return false;
+  }
+
+  // 5. Password (5-15 characters)
+  if (password.length < 5 || password.length > 15) {
+    alert("Password must be between 5 and 15 characters.");
+    return false;
+  }
+
+  // 6. Card type
+  if (cardtype === "") {
+    alert("Please select card type.");
+    return false;
+  }
+
+  // 7. Card number
+  if (cardnumber === "") {
+    alert("Please enter card number.");
+    return false;
+  }
+
+  // 8. Card name
+  if (cardname === "") {
+    alert("Please enter name on card.");
+    return false;
+  }
+
+  // 9. At least one spice checked
+  let spices = document.getElementsByName("spices");
+  let spiceChecked = false;
+  for (let i = 0; i < spices.length; i++) {
+    if (spices[i].checked) {
+      spiceChecked = true;
+      break;
+    }
+  }
+  if (!spiceChecked) {
+    alert("Please select at least one spice.");
+    return false;
+  }
+
+  // 10. Pizza size - dropdown so always selected, skip this
+
+  // 11. Quantity
+  if (quantity === "" || quantity <= 0) {
+    alert("Please enter a valid quantity.");
+    return false;
+  }
+
+  // 12. Meat radio selected
+  let meats = document.getElementsByName("meat");
+  let meatSelected = false;
+  for (let i = 0; i < meats.length; i++) {
+    if (meats[i].checked) {
+      meatSelected = true;
+      break;
+    }
+  }
+  if (!meatSelected) {
+    alert("Please select one meat option.");
+    return false;
+  }
+
+  // Kama yote yapo sawa:
+  alert("Form submitted successfully!");
+  e.target.submit(); // Tuma form sasa
+}
+</script>
+
+</body>
+</html>
