@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // 1. Create the object
+    const myCountry = {
+    country: "Tanzania",
+    capital: "Dodoma",
+    language: "Swahili",
+    population: 61, // in millions
+    neighbours: ["Kenya", "Uganda", "Rwanda", "Mozambique", "Zambia", "Malawi", "Burundi", "DR Congo"],
+
+  // 5. Add describe method using 'this'
+    describe: function () {
+    console.log(`${this.country} has ${this.population} million ${this.language}-speaking people, ${this.neighbours.length} neighbouring countries and a capital called ${this.capital}.`);
+  },
+
+  // 6. Add checkIsland method using ternary operator
+  checkIsland: function () {
+    this.isIsland = this.neighbours.length === 0 ? true : false;
+  }
+  };
+
+ // 2. Log sentence (similar to example)
+   console.log(`${myCountry.country} has ${myCountry.population} million ${myCountry.language}-speaking people, ${myCountry.neighbours.length} neighbouring countries and a capital called ${myCountry.capital}.`);
+
+ // 3. Increase population by 2 million using dot notation
+   myCountry.population += 2;
+
+ // 4. Decrease population by 2 million using bracket notation
+   myCountry["population"] -= 2;
+
+ // 7. Call the describe method
+   myCountry.describe();
+
+// 8. Call the checkIsland method and show result
+   myCountry.checkIsland();
+   console.log("Is it an island?", myCountry.isIsland);
+
+    </script>
+    
+</body>
+</html>
