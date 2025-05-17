@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        fieldset{
+            background-color:whitesmoke;
+            text-align: left;
+
+        }
+        input{
+            width: 450px;;
+            height: 30px;
+        }
+        button{
+            background-color: black;
+            color: white;
+            width: 450px;;
+            height: 30px;
+            
+        }
+        
+    </style>
+</head>
+<body><center>
+    <form action="" id="content">
+        <fieldset style="width: fit-content;">
+            <h1 style="font-size: 30px;"><b>Send Message</b></h1> <br>
+
+            <label for="">Name:</label><br>
+            <input type="text" id="Name"><br><p></p>
+
+            <label for="">Email:</label> <br>
+            <input type="text" id="email"><br><p></p>
+
+            
+            <label for="">Message:</label><br>
+            <textarea name="" id="message" placeholder=" Hello World" style="width: 450px;"></textarea> <br><p></p>
+
+            <button>Send Message</button>
+
+        </fieldset>
+    </form>
+</center>
+</body>
+
+<script>
+    const form = document.getElementById('content');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const messageInput = document.getElementById('message');
+   
+
+     form.addEventListener('submit' , submitter);
+
+      function submitter(e) {
+      e.preventDefault(); // stop default form submission
+      errorOutput.innerHTML = ' ';
+      nameInput.classList.remove('error');
+      emailInput.classList.remove('error');
+      messageInput.classList.remove('error');
+
+      let errors = [];
+
+      // Input validation
+      if (nameInput.value.trim() === '') {
+        errors.push("Name is required.");
+        nameInput.classList.add('error');
+      }
+      if (emailInput.value.trim() === '' || !emailInput.value.includes('@')) {
+        errors.push("Valid email is required.");
+        emailInput.classList.add('error');
+      }
+      if (messageInput.value.trim() === '') {
+        errors.push("Message cannot be empty.");
+        messageInput.classList.add('error');
+      }
+
+       // Clear errors after 3 seconds
+        setTimeout(() => {
+          errorOutput.innerHTML = ' ';
+          nameInput.classList.remove('error');
+          emailInput.classList.remove('error');
+          messageInput.classList.remove('error');
+        }, 3000);
+        return;
+      }
+
+       // Create data object for submission
+      const formData = {
+        name: nameInput.value.trim( ),
+        email: emailInput.value.trim( ),
+        message: messageInput.value.trim( )
+      };
+
+      console.log("Form Data Ready to Send:", formData);
+      // TODO: Send to Google Apps Script endpoint via fetch() if needed.
+      alert("Message ready to be sent!");
+      form.reset(); // clear the form
+    
+
+</script>
+
+
+</html>
