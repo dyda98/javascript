@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        function Circle(radius){
+            this.radiusCircle=radius;
+                
+            this.getArea=function(){
+                console.log(Math.PI*radius*radius);
+                }
+                this.getParameter=function(){
+                    console.log(2*Math.PI*radius);
+                }
+             }
+             const circle = new Circle(11);
+             circle.getArea();
+             const circle2 = new Circle(44.4);
+             circle2.getParameter();
+        </script>
+
+
+           
+</body>
+</html>
