@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        fieldset {
+            margin-inline-start: 2%;
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+
+<form>
+    <fieldset style="width: fit-content;">
+        <h2><b>Input Section</b></h2>
+        <p>
+            Enter a number in each of the boxes below then click one of a button below <br>
+            either sort the number in to ascending order, or descending order. <br>
+            This sorted numbers will be placed output section
+        </p>
+
+        <label style="margin-right:28%; margin-inline-start: 14%;">A</label>
+        <label style="margin-right:29%;">B</label>
+        <label>C</label><br>
+
+        <input type="number" id="number1">&nbsp;
+        <input type="number" id="number2">&nbsp;
+        <input type="number" id="number3"><p></p>
+
+        <button style="width: 30%;" onclick="sortNumbers(event, true)">Sort in ascending Order</button>&nbsp;
+        <button style="width: 35%;" onclick="sortNumbers(event, false)">Sort in descending Order</button>
+
+        <hr>
+        <h2>Output Section</h2>
+        <p>
+            Once you click on one of the buttons, the numbers in a boxes A, B and C will be sorted<br>
+            accordingly the sorted numbers will then be placed in these boxes.
+        </p>
+
+        <input type="text" id="outputA" readonly>&nbsp;
+        <input type="text" id="outputB" readonly>&nbsp;
+        <input type="text" id="outputC" readonly style="margin-bottom: 2%;">
+    </fieldset>
+</form>
+
+<script>
+    function sortNumbers(event, isAscending) {
+        // Zuia form isirefresh ukurasa
+        event.preventDefault();
+
+        // Pata namba kutoka kwa input fields
+        let a = parseFloat(document.getElementById("number1").value);
+        let b = parseFloat(document.getElementById("number2").value);
+        let c = parseFloat(document.getElementById("number3").value);
+
+        // Hakikisha zote ni namba
+        if (isNaN(a) || isNaN(b) || isNaN(c)) {
+            alert("SORRY, ENTER YOUR NUMBERS CORRECTLY");
+            return;
+        }
+
+        let numbers = [a, b, c];
+
+        // Panga namba
+        numbers.sort((x, y) => isAscending ? x - y : y - x);
+
+        // Onyesha kwenye output
+        document.getElementById("outputA").value = numbers[0];
+        document.getElementById("outputB").value = numbers[1];
+        document.getElementById("outputC").value = numbers[2];
+    }
+</script>
+
+</body>
+</html>
